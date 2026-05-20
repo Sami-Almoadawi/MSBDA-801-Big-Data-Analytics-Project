@@ -1,6 +1,21 @@
-pyspark
-pandas
-numpy
-matplotlib
-datasets
-scikit-learn
+# Core Big Data & Spark Ecosystem
+pyspark>=3.4.0
+pandas>=2.0.0
+numpy>=1.24.0
+
+# Data Acquisition
+datasets>=2.14.0     # To download the KFUPM-JRCAI dataset via Hugging Face
+
+# Deep Learning (Advanced Feature 98 - BERT)
+torch>=2.0.0         # PyTorch backend for AraBERT
+transformers>=4.30.0 # Hugging Face Transformers for BERT [CLS] probabilities
+
+# Vectorized UDF support in Spark (prevents Out-Of-Memory errors)
+pyarrow>=10.0.1      # Critical for efficient Pandas UDFs in Feature 98
+
+# machine Learning & Evaluation (Phase 4)
+scikit-learn>=1.2.0  # For prototyping and additional evaluation metrics
+kafka-python>=2.0.2  # For the real-time stream simulation pipeline
+
+# Visualization & Reporting (Phase 2 & Phase 5)
+matplotlib>=3.7.0    # For plotting feature importance and model metrics
