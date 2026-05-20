@@ -33,9 +33,31 @@ https://huggingface.co/datasets/KFUPM-JRCAI/arabic-generated-abstracts
 - ROC-AUC: 99.1%
 
 ## Project Structure
-- data/
-- notebooks/
-- src/
-- reports/
-- presentation/
+The repository is organized as follows:
 
+ ```
+
+project-root/
+├── data/
+│   ├── raw/
+│   └── processed/
+├── models/
+├── notebooks/
+│   └── Arabic_AI_Text_Detection_Project.ipynb
+├── reports/
+│   ├── figures/
+│   └── final project reports/
+│   └── presentations/
+├── src/
+│   ├── data_preparation.py
+│   ├── modeling.py
+│   ├── streaming_pipeline.py
+│   └── utils.py
+├── .gitattributes
+├── .gitignore
+├── README.md
+└── requirements.txt
+
+```
+
+---
