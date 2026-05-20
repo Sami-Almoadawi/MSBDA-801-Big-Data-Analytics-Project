@@ -5,3 +5,22 @@ F1-score: 97.3%
 ROC-AUC: 99.1%
 
 The model was trained using Spark MLlib.
+
+
+
+The proposed system architecture is designed around a unified Big Data pipeline that seamlessly bridges distributed batch training with real-time stream inference using Apache Spark. The architecture consists of five fundamental layers structured to handle high-dimensional Arabic text:
+
+1. Distributed Data Ingestion & Storage Layer
+The proposed architecture begins with distributed data ingestion and storage. The KFUPM-JRCAI Arabic Generated Abstracts dataset, which contains approximately 41,940 samples covering human-written and multi-model AI-generated abstracts, is loaded through the Hugging Face Datasets API. The raw records are then converted into a Spark DataFrame to enable distributed processing, and the processed data are persisted in Apache Parquet format to reduce I/O overhead and support efficient columnar access across Spark executors.
+
+2. Arabic-Specific Preprocessing Layer
+The second layer performs Arabic-specific preprocessing within PySpark’s distributed execution environment. Custom Spark UDFs are used to normalize Arabic characters, remove diacritics and special punctuation, and apply lightweight stemming and token-level cleanup. These operations reduce textual noise and help improve downstream feature extraction by lowering the sparsity of the Arabic text representation.
+
+3. Scalable Feature Engineering & Extraction Layer
+The third layer transforms the preprocessed text into a multi-dimensional feature space that combines statistical, stylometric, and semantic information. A Spark MLlib Tokenizer and HashingTF-IDF pipeline is used to generate 10,000 sparse text features while preserving an end-to-end training workflow. In addition, custom distributed UDFs extract stylometric signatures such as elongation frequency, semicolon usage, interjection patterns, and an active-voice approximation feature that excludes common passive academic markers. To capture deeper semantic information, a pre-trained AraBERT-based representation is incorporated through a vectorized Pandas UDF, enabling distributed semantic feature extraction across Spark workers.
+
+4. Distributed Modeling & Pipeline Execution
+The extracted features are assembled into a single feature vector using Spark’s VectorAssembler. Three supervised machine learning models are then trained and evaluated: Logistic Regression, Random Forest, and Linear Support Vector Machine. All classifiers are embedded within Spark ML pipelines to ensure consistent preprocessing, reduce leakage risk, and support fair comparison under the same training and test conditions. This design preserves scalability while keeping the modeling workflow fully distributed.
+
+5. Stream Inference & Real-Time Deployment Layer
+The best-performing model, Linear SVM, is deployed in a Spark Structured Streaming layer to simulate near real-time inference on incoming Arabic text micro-batches. A file-based streaming source is used as a lightweight proxy for live data ingestion, allowing the system to process new text continuously with low operational latency. This final layer demonstrates how the batch-trained model can be reused in a streaming context to support scalable real-time Arabic AI-text detection.
