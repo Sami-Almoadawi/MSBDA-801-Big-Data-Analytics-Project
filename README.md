@@ -52,6 +52,7 @@ project-root/
 │   ├── modeling.py
 │   ├── streamingpipeline.py
 │   └── utils.py
+├── .gitattributes
 ├── .gitignore
 ├── README.md
 └── requirements.txt
