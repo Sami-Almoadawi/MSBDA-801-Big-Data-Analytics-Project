@@ -46,11 +46,12 @@ project-root/
 │   └── Arabic_AI_Text_Detection_Project.ipynb
 ├── reports/
 │   ├── figures/
+│   └── final project reports/
 │   └── presentations/
 ├── src/
-│   ├── datapreparation.py
+│   ├── data_preparation.py
 │   ├── modeling.py
-│   ├── streamingpipeline.py
+│   ├── streaming_pipeline.py
 │   └── utils.py
 ├── .gitattributes
 ├── .gitignore
